@@ -4,25 +4,41 @@ if not data.raw['electric-pole']['medium-electric-pole'] then
 end
 
 local pole = table.deepcopy(data.raw['electric-pole']['medium-electric-pole'])
+local pole2 = table.deepcopy(data.raw['electric-pole']['medium-electric-pole'])
 
-log(serpent.block(pole))
+--log(serpent.block(pole))
 
-pole.name = 'fepp-pole'
-pole.fast_replaceable_group = nil
 pole.minable = nil
 pole.flags = {
     'placeable-off-grid',
     'not-on-map'
 }
---pole.draw_copper_wires = false
-pole.maximum_wire_distance = 4
-pole.supply_area_distance = 2.5
-pole.selection_priority = 255
+pole.maximum_wire_distance = 7.5
+pole.fast_replaceable_group = nil
 
+local circuit_pole = table.deepcopy(pole)
+local power_pole = table.deepcopy(pole)
+
+-- graphical pole at corner of machine
+circuit_pole.name = 'fepp-circuit-pole'
+circuit_pole.supply_area_distance = 0
+circuit_pole.selection_priority = 255
+circuit_pole.draw_copper_wires = true
+
+power_pole.name = 'fepp-power-pole'
+power_pole.selection_box = {{0, 0}, {0, 0}}
+power_pole.draw_copper_wires = false
+power_pole.supply_area_distance = 3.5
+power_pole.selection_priority = 255
+
+
+
+log(serpent.block(circuit_pole))
+log(serpent.block(power_pole))
 
 data:extend(
     {
-        pole
+        circuit_pole, power_pole
     }
 )
 
