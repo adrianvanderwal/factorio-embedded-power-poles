@@ -1,0 +1,10 @@
+{
+    "name": "factorio-embedded-power-poles",
+    "version": "0.0.1",
+    "date": "2019-07-03",
+    "title": "Embedded Power Poles",
+    "author": "EnigmaticAussie",
+    "dependencies": ["base", "!TidyFactory"],
+    "description": "Adds embedded power poles to some entites, to reduce power pole spam.",
+    "factorio_version": "0.17"
+}
