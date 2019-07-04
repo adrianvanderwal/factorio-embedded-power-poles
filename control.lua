@@ -1,3 +1,5 @@
+local DEBUG = settings.global['fepp-DEBUG']
+
 local function init_global()
     global.fepp = {}
     global.fepp.allowed_buildings = {
@@ -13,12 +15,11 @@ local function place_poles(entity)
     --log(entity.prototype.type)
     --log(global.fepp.allowed_buildings[entity.prototype.type])
 
-
     -- check if it's a power pole.
     -- only allow connections to circuit-poles
 
     -- check against list of allowed entities
-    if global.fepp.allowed_buildings[entity.prototype.type] then
+    if global.fepp.allowed_buildings[entity.prototype.type] and entity.prototype.electric_energy_source_prototype then
 
         -- get entity size, adjust search radius
         local radius_to_search = math.ceil((math.ceil(entity.bounding_box.right_bottom.x) - math.floor(entity.bounding_box.left_top.x)) * 2)
